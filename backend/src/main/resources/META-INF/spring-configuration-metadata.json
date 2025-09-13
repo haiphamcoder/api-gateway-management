@@ -1,0 +1,62 @@
+{
+    "properties": {
+        "spring.application.name": {
+            "type": "java.lang.String",
+            "defaultValue": "api-gateway-management"
+        },
+        "project.version": {
+            "type": "java.lang.String",
+            "defaultValue": "0.0.1"
+        },
+        "project.description": {
+            "type": "java.lang.String",
+            "defaultValue": "API Gateway Management System with Kong Gateway"
+        },
+        "server.port": {
+            "type": "java.lang.Integer",
+            "defaultValue": 8080
+        },
+        "kong.admin.url": {
+            "type": "java.lang.String",
+            "defaultValue": "http://localhost:8001"
+        },
+        "kong.admin.timeout": {
+            "type": "java.lang.Integer",
+            "defaultValue": 5000
+        },
+        "kong.admin.retryAttempts": {
+            "type": "java.lang.Integer",
+            "defaultValue": 3
+        }
+    },
+    "hints": {
+        "spring.application.name": {
+            "name": "Spring Application Name",
+            "description": "The name of the Spring application"
+        },
+        "project.version": {
+            "name": "Project Version",
+            "description": "The version of the project"
+        },
+        "project.description": {
+            "name": "Project Description",
+            "description": "The description of the project"
+        },
+        "server.port": {
+            "name": "Server Port",
+            "description": "The port of the server"
+        },
+        "kong.admin.url": {
+            "name": "Kong Admin URL",
+            "description": "The URL of the Kong Admin API"
+        },
+        "kong.admin.timeout": {
+            "name": "Kong Admin Timeout",
+            "description": "The timeout of the Kong Admin API"
+        },
+        "kong.admin.retryAttempts": {
+            "name": "Kong Admin Retry Attempts",
+            "description": "The retry attempts of the Kong Admin API"
+        }
+    }
+}
