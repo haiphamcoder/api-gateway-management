@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +16,14 @@ import io.github.haiphamcoder.gateway.utility.common.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiResponse<Object>> handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException ex) {
+        String errorMessage = ex.getMessage().split(":")[0].trim();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(HttpStatus.BAD_REQUEST.toString(), errorMessage));
+    }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiResponse<Object>> handleHttpRequestMethodNotSupportedException(
@@ -49,18 +58,18 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error(HttpStatus.CONFLICT.toString(), ex.getMessage()));
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ApiResponse<Object>> handleRuntimeException(RuntimeException ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-                        ex.getMessage()));
-    }
+    // @ExceptionHandler(RuntimeException.class)
+    // public ResponseEntity<ApiResponse<Object>> handleRuntimeException(RuntimeException ex) {
+    //     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+    //             .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+    //                     ex.getMessage()));
+    // }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<Object>> handleException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-                        ex.getMessage()));
-    }
+    // @ExceptionHandler(Exception.class)
+    // public ResponseEntity<ApiResponse<Object>> handleException(Exception ex) {
+    //     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+    //             .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+    //                     ex.getMessage()));
+    // }
 
 }

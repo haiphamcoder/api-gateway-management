@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongService;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongService;
 import io.github.haiphamcoder.gateway.layer.application.repository.KongRepository;
 import io.github.haiphamcoder.gateway.layer.application.usecase.KongServiceManagementUsecase;
 import lombok.RequiredArgsConstructor;

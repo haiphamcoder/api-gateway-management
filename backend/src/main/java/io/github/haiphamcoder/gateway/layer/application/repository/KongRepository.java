@@ -2,10 +2,10 @@ package io.github.haiphamcoder.gateway.layer.application.repository;
 
 import java.util.List;
 
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongRoute;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongService;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongTarget;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongUpstream;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongRoute;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongService;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongTarget;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongUpstream;
 
 public interface KongRepository {
 

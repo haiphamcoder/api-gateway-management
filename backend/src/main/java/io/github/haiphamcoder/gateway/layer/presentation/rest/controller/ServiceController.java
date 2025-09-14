@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongService;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongService;
 import io.github.haiphamcoder.gateway.layer.application.usecase.KongServiceManagementUsecase;
 import io.github.haiphamcoder.gateway.layer.presentation.rest.dto.request.KongServiceRequest;
 import io.github.haiphamcoder.gateway.layer.presentation.rest.mapper.KongServiceMapper;

@@ -1,5 +1,41 @@
 services:
 
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    hostname: mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - kong-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    hostname: redis
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    env_file:
+      - .env
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    ports:
+      - "6379:6379"
+    networks:
+      - kong-network
+    volumes:
+      - redis-data:/data
+
   kong-database:
     image: postgres:13
     container_name: kong-database
@@ -71,19 +107,42 @@ services:
     container_name: backend
     hostname: backend
     restart: always
+    env_file:
+      - .env
     environment:
       - KONG_ADMIN_URL=http://kong:8001
       - KONG_ADMIN_TIMEOUT=5000
       - KONG_ADMIN_RETRY_ATTEMPTS=3
+      - MYSQL_URL=jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - MYSQL_POOL_SIZE=10
+      - MYSQL_POOL_NAME=gateway_pool
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DATABASE=0
+      - REDIS_TIMEOUT=10000
+      - REDIS_MAX_ACTIVE=8
+      - REDIS_MAX_WAIT=-1
+      - REDIS_MAX_IDLE=8
+      - REDIS_MIN_IDLE=0
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ACCESS_TOKEN_EXPIRATION=3600000
+      - JWT_REFRESH_TOKEN_EXPIRATION=86400000
     ports:
       - "8080:8080"
     depends_on:
+      - mysql
       - kong
     networks:
       - kong-network
 
 volumes:
   kong-data:
+  mysql-data:
+  redis-data:
 
 networks:
   kong-network:

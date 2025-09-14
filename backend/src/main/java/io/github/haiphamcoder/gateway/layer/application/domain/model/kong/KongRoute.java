@@ -1,4 +1,4 @@
-package io.github.haiphamcoder.gateway.layer.application.domain.model;
+package io.github.haiphamcoder.gateway.layer.application.domain.model.kong;
 
 import java.time.Instant;
 import java.util.List;

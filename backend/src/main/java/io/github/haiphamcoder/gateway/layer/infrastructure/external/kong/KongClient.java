@@ -12,11 +12,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import io.github.haiphamcoder.gateway.layer.application.domain.exception.ConflictException;
 import io.github.haiphamcoder.gateway.layer.application.domain.exception.NotFoundException;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongRoute;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongService;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongServiceList;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongTarget;
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongUpstream;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongRoute;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongService;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongServiceList;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongTarget;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongUpstream;
 import io.github.haiphamcoder.gateway.layer.application.repository.KongRepository;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;

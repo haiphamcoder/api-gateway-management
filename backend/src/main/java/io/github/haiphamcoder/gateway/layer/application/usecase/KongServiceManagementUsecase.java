@@ -2,7 +2,7 @@ package io.github.haiphamcoder.gateway.layer.application.usecase;
 
 import java.util.List;
 
-import io.github.haiphamcoder.gateway.layer.application.domain.model.KongService;
+import io.github.haiphamcoder.gateway.layer.application.domain.model.kong.KongService;
 
 public interface KongServiceManagementUsecase {
 
